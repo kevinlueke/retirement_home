@@ -1,21 +1,26 @@
 <?php
+session_start();
+$_SESSION["error"] = "";
 
 if (isset($_POST['submit'])) {
     //Add database connection
     require 'database.php';
 
-    $username = $_POST['username'];
+    $email = $_POST['username'];
     $password = $_POST['password'];
     $confirmPass = $_POST['confirmPassword'];
 
-    if (empty($username) || empty($password) || empty($confirmPass)) {
-        header("Location: ../register.php?error=emptyfields&username=".$username);
+    if (empty($email) || empty($password) || empty($confirmPass)) {
+        header("Location: ../register.php");
+        $_SESSION["error"] = "Blank Fields";
         exit();
-    } elseif (!preg_match("/^[a-zA-Z0-9]*/", $username)) {
-        header("Location: ../register.php?error=invalidusername&username=".$username);
+    } elseif (!preg_match("/^[a-zA-Z0-9]*/", $email)) {
+        header("Location: ../register.php");
+        $_SESSION["error"] = "Invalid Email";
         exit();
     } elseif($password !== $confirmPass) {
-        header("Location: ../register.php?error=passwordsdonotmatch&username=".$username);
+        header("Location: ../register.php".$email);
+        $_SESSION["error"] = "Passwords Do Not Match";
         exit();
     }
 
@@ -26,7 +31,7 @@ if (isset($_POST['submit'])) {
             header("Location: ../register.php?error=sqlerror");
             exit();
         } else {
-            mysqli_stmt_bind_param($stmt, "s", $username);
+            mysqli_stmt_bind_param($stmt, "s", $email);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             $rowCount = mysqli_stmt_num_rows($stmt);
@@ -43,7 +48,7 @@ if (isset($_POST['submit'])) {
                 } else {
                     $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-                    mysqli_stmt_bind_param($stmt, "ss", $username, $hashedPass);
+                    mysqli_stmt_bind_param($stmt, "ss", $email, $hashedPass);
                     mysqli_stmt_execute($stmt);
                         header("Location: ../register.php?succes=registered");
                         exit();

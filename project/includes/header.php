@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-session_start();
+
 require_once 'database.php';
 require_once 'register-inc.php';
 
@@ -19,6 +19,7 @@ require_once 'register-inc.php';
         <li> <a href="index.php">Home</a> </li>
         <li> <a href="login.php">Log In</a></li>
         <li> <a href="register.php">Register</a></li>
+        <li> <a href="logout.php">Log Out</a></li>
       </ul>
     </nav>
   </header>

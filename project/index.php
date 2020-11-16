@@ -8,7 +8,6 @@ require_once 'includes/header.php';
     } else {
         echo "Home";
     }
-
 ?>
 <?php
 require_once 'includes/footer.php'
