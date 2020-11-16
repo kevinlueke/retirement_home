@@ -7,7 +7,7 @@ require_once 'includes/header.php';
     <p> Already have an account? <a href="login.php">Login!</a></p>
 
     <form action="includes/register-inc.php" method="post">
-      <select id="operation" name="operation">
+      <select id="operation" name="role">
         <option value="1">Patient</option>
         <option value="2">Nurse</option>
         <option value="3">Doctor</option>
@@ -17,8 +17,8 @@ require_once 'includes/header.php';
         <input type="text" name="fName" placeholder="First Name">
         <input type="text" name="lName" placeholder="Last Name">
         <input type="email" name="email" placeholder="Email">
-        <input type="number" name="fName" placeholder="Phone Number">
-        <input type="date" name="fName" placeholder="Date of Birth">
+        <input type="number" name="phone" placeholder="Phone Number">
+        <input type="date" name="birth" placeholder="Date of Birth">
         <input type="password" name="password" placeholder="Password">
         <input type="password" name="confirmPassword" placeholder="Confirm password">
 

@@ -6,12 +6,7 @@ require_once 'includes/header.php';
 <div>
   <div class="error">
     <?php
-      if(isset($_SESSION["error"])){
-          $error = $_SESSION["error"];
-          echo "<span>$error</span>";
-      }
-      var_dump( $_SESSION["error"]);
-      echo "hello";
+    
     ?>
   </div>
 
