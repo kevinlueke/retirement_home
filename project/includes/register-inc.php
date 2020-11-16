@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION["error"] = "";
+$_SESSION["rWarning"] = "";
 
 if (isset($_POST['submit'])) {
     //Add database connection
@@ -17,15 +17,15 @@ if (isset($_POST['submit'])) {
 
     if (empty($email) || empty($password) || empty($confirmPass)) {
         header("Location: ../register.php?empty");
-        $_SESSION["error"] = "Blank Fields";
+        $_SESSION["rWarning"] = "Blank Fields";
         exit();
     } elseif (!preg_match("/^[a-zA-Z0-9]*/", $email)) {
         header("Location: ../register.php");
-        $_SESSION["error"] = "Invalid Email";
+        $_SESSION["rWarning"] = "Invalid Email";
         exit();
     } elseif($password !== $confirmPass) {
         header("Location: ../register.php".$email);
-        $_SESSION["error"] = "Passwords Do Not Match";
+        $_SESSION["rWarning"] = "Passwords Do Not Match";
         exit();
     }
 
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
                 $sql = "INSERT INTO Users (role_id,	first_name,	last_name,	email,	phone,	password,	date_of_birth) VALUES (?,?,?,?,?,?)";
                 $stmt = mysqli_stmt_init($link);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
-                    
+                    echo "Records added successfully.";
                     header("Location: ../register.php?error=sqleror");
                     exit();
                 } else {

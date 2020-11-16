@@ -4,9 +4,12 @@ require_once 'includes/header.php';
 
 
 <div>
-  <div class="error">
+  <div class="warning">
     <?php
-    
+      if(isset($_SESSION["warning"])){
+          $error = $_SESSION["warning"];
+          echo "<span>$error</span>";
+      }
     ?>
   </div>
 

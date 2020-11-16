@@ -13,14 +13,14 @@ if (isset($_POST['submit'])) {
     echo $password;
     if (empty($email) || empty($password)) {
         header("Location: ../login.php?blank=true");
-        $_SESSION["error"] = "Blank Fields";
+        $_SESSION["warning"] = "Blank Fields";
         exit();
     }else {
-        $sql = "SELECT * FROM users WHERE email = ?";
+        $sql = "SELECT * FROM Users WHERE email = ?";
         $stmt = mysqli_stmt_init($link);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../login.php");
-            $_SESSION["error"] = "Internal Error";
+            $_SESSION["warning"] = "Internal Error";
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "s", $email);
@@ -31,22 +31,22 @@ if (isset($_POST['submit'])) {
                 $passCheck = password_verify($password, $row['password']);
                 if ($passCheck == false) {
                     header("Location: ../login.php");
-                    $_SESSION["error"] = "Invalid Username or Password";
+                    $_SESSION["warning"] = "Invalid Email or Password";
                     exit();
                 } elseif ($passCheck == true) {
                     $_SESSION['sessionId'] = $row['id'];
                     $_SESSION['sessionUser'] = $row['first_name'];
                     header("Location: ../index.php");
-                    $_SESSION["error"] = "";
+                    $_SESSION["warning"] = "";
                     exit();
                 } else {
                     header("Location: ../login.php");
-                    $_SESSION["error"] = "Invalid Username or Password";
+                    $_SESSION["warning"] = "Invalid Email or Password";
                     exit();
                 }
             } else {
                 header("Location: ../login.php");
-                $_SESSION["error"] = "Invalid Username or Password";
+                $_SESSION["warning"] = "Invalid Email or Password";
                 exit();
             }
         }
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
     }
     else {
                 header("Location: ../login.php?");
-                $_SESSION["error"] = "Access Denied";
+                $_SESSION["warning"] = "Access Denied";
                 exit();
             }
 
