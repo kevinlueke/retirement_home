@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION["rWarning"] = "";
+
 
 if (isset($_POST['submit'])) {
     //Add database connection
@@ -45,24 +45,27 @@ if (isset($_POST['submit'])) {
                 header("Location: ../register.php?error=usernametaken");
                 exit();
             } else {
-                $sql = "INSERT INTO Users (role_id,	first_name,	last_name,	email,	phone,	password,	date_of_birth) VALUES (?,?,?,?,?,?)";
-                $stmt = mysqli_stmt_init($link);
-                if (!mysqli_stmt_prepare($stmt, $sql)) {
-                    echo "Records added successfully.";
-                    header("Location: ../register.php?error=sqleror");
-                    exit();
-                } else {
-                    $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-                    mysqli_stmt_bind_param($stmt, "isssssss", $role_id, $first_name,$last_name,$phone,$email,$hashedPass,$birth);
-                    mysqli_stmt_execute($stmt);
-                        header("Location: ../index.php?succes=registered");
-                        exit();
-                }
-            }
+             mysqli_stmt_close($stmt);
+             $sql = "INSERT INTO Users (role_id, first_name, last_name, email, phone, password, date_of_birth) VALUES (?,?,?,?,?,?,?)";
+             $stmt = mysqli_stmt_init($link);
+             if(!mysqli_stmt_prepare($stmt,$sql)){
+               echo "There was a problem inserting the data.";
+               echo "<br/>";
+               echo "<a href='../register.php'>Go back</a>";
+               exit();
+            } else {
+              $hashedpass =password_hash($password,PASSWORD_DEFAULT);
+              mysqli_stmt_bind_param($stmt,"issssss",$role_id, $first_name,$last_name,$phone,$email,$hashedPass,$birth);
+              mysqli_stmt_execute($stmt);
+              mysqli_stmt_close($stmt);
+              $_SESSION["rWarning"] = mysqli_warning($link);
+              header("Location: ../index.php");
+              }
         }
     }
-    mysqli_stmt_close($stmt);
+
     mysqli_close($link);
+}
 }
 ?>

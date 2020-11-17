@@ -3,6 +3,14 @@ require_once 'includes/header.php';
 ?>
 
 <div>
+  <div class="warning">
+    <?php
+      if(isset($_SESSION["rWarning"])){
+          $error = $_SESSION["rWarning"];
+          echo "<span> Error:  $error</span>";
+      }
+    ?>
+  </div>
     <h1>Register</h1>
     <p> Already have an account? <a href="login.php">Login!</a></p>
 
