@@ -31,13 +31,15 @@ if (isset($_POST['submit'])) {
                 $passCheck = password_verify($password, $row['password']);
                 if ($passCheck == false) {
                     header("Location: ../login.php");
-                    $_SESSION["warning"] = "Invalid Email or Password";
+                    $_SESSION["warning"] = "Invalid  Password";
                     exit();
                 } elseif ($passCheck == true) {
                     $_SESSION['sessionId'] = $row['id'];
-                    $_SESSION['sessionUser'] = $row['first_name'];
+                    $_SESSION['sessionfName'] = $row['first_name'];
+                    $_SESSION['sessionlName'] = $row['last_name'];
+                    $_SESSION['sessionRole'] = $row['role_id'];
                     header("Location: ../index.php");
-                    $_SESSION["warning"] = "";
+                    $_SESSION["warning"] = "" ;
                     exit();
                 } else {
                     header("Location: ../login.php");
