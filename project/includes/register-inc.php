@@ -13,7 +13,8 @@ if (isset($_POST['submit'])) {
     $first_name = $_POST['fName'];
     $last_name = $_POST['lName'];
     $phone = $_POST['phone'];
-    $birth = $_POST['birth'];
+    $rawdate = htmlentities($_POST['birth']);
+    $birth = date('Y-m-d', strtotime($rawdate));
 
     if (empty($email) || empty($password) || empty($confirmPass)) {
         header("Location: ../register.php?empty");
@@ -59,7 +60,7 @@ if (isset($_POST['submit'])) {
               mysqli_stmt_bind_param($stmt,"issssss",$role_id, $first_name,$last_name,$phone,$email,$hashedPass,$birth);
               mysqli_stmt_execute($stmt);
               mysqli_stmt_close($stmt);
-              $_SESSION["rWarning"] = mysqli_warning($link);
+              $_SESSION["rWarning"] = "";
               header("Location: ../index.php");
               }
         }
