@@ -38,7 +38,18 @@ if (isset($_POST['submit'])) {
                     $_SESSION['sessionfName'] = $row['first_name'];
                     $_SESSION['sessionlName'] = $row['last_name'];
                     $_SESSION['sessionRole'] = $row['role_id'];
-                    header("Location: ../index.php");
+                    if ($_SESSION['sessionRole']==5) {
+                      header("Location: ../views/patienthome.php");
+                    }elseif ($_SESSION['sessionRole']==3) {
+                      header("Location: ../views/carehome.php");
+                    }elseif ($_SESSION['sessionRole']==2) {
+                      header("Location: ../views/doctorhome.php");
+                    }elseif ($_SESSION['sessionRole']==1) {
+                      header("Location: ../views/superhome.php");
+                    }elseif ($_SESSION['sessionRole']==0) {
+                      header("Location: ../views/adminhome.php");
+                    }
+
                     $_SESSION["warning"] = "" ;
                     exit();
                 } else {
