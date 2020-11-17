@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST['submit'])) {
 
-    require 'database.php';
+    require '../database/db.php';
 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
         exit();
     }else {
         $sql = "SELECT * FROM Users WHERE email = ?";
-        $stmt = mysqli_stmt_init($link);
+        $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../login.php");
             $_SESSION["warning"] = "Internal Error";
