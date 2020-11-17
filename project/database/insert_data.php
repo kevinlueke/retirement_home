@@ -15,6 +15,9 @@ if(mysqli_query($conn, $queryRoles)){
     echo "ERROR: Could not able to execute $queryRoles. " . mysqli_error($conn);
 }
 
+//password_hash($password,PASSWORD_DEFAULT)
+
+
 $queryUsers = "INSERT INTO Users (role_id, first_name, last_name, email, phone, password, date_of_birth, approved)
                VALUES (0, 'Kevin', 'Lueke', 'kevinlueke66@gmail.com', '7171111111', 'qwerty', '2000-09-26', 1),
                       (0, 'Scott', 'Johnson', 'scottyjohnson002@gmail.com', '7170000000', 'qwerty', '2002-03-13', 1),
@@ -130,4 +133,3 @@ if(mysqli_query($conn, $queryReceipt)){
 }
 
 ?>
-
