@@ -16,11 +16,11 @@ require_once 'includes/header.php';
 
     <form action="includes/register-inc.php" method="post">
       <select id="operation" name="role">
-        <option value="1">Patient</option>
-        <option value="2">Nurse</option>
-        <option value="3">Doctor</option>
-        <option value="4">Supervisor</option>
-        <option value="5">Admin</option>
+        <option value="5">Patient</option>
+        <option value="3">Caregiver</option>
+        <option value="2">Doctor</option>
+        <option value="1">Supervisor</option>
+        <option value="0">Admin</option>
       </select>
         <input type="text" name="fName" placeholder="First Name">
         <input type="text" name="lName" placeholder="Last Name">

@@ -19,19 +19,19 @@ if(mysqli_query($conn, $queryRoles)){
 
 
 $queryUsers = "INSERT INTO Users (role_id, first_name, last_name, email, phone, password, date_of_birth, approved)
-               VALUES (0, 'Kevin', 'Lueke', 'kevinlueke66@gmail.com', '7171111111', 'qwerty', '2000-09-26', 1),
-                      (0, 'Scott', 'Johnson', 'scottyjohnson002@gmail.com', '7170000000', 'qwerty', '2002-03-13', 1),
-                      (1, 'Bob', 'Jenkins', 'bjenks@gmail.com', '1234567890', 'pass', '1999-03-29', 0),
-                      (5, 'Dale', 'Films', 'dalefilms@old.com', '1010101010', 'word', '1950-10-11', 0),
-                      (0, 'admin', 'admin', 'admin@email.com', '0000000000', 'admin', '1988-09-07', 1),
-                      (1, 'supervisor', 'supervisor', 'supervisor@email.com', '1111111111', 'supervisor', '1955-11-07', 1),
-                      (2, 'doctor', 'doctor', 'doctor@email.com', '2222222222', 'doctor', '2010-04-16', 1),
-                      (3, 'caregiver', 'caregiver', 'caregiver@email.com', '3333333333', 'caregiver', '1988-09-07', 1),
-                      (4, 'family', 'family', 'family@email.com', '4444444444', 'family', '1977-12-25', 1),
-                      (5, 'patient', 'patient', 'patient@email.com', '5555555555', 'patient', '1899-05-11', 1),
-                      (3, 'John', 'Doe', 'johndoe@email.com', '1414141414', 'asdfgh', '1999-04-04', 1),
-                      (3, 'Dan', 'Man', 'danman@email.com', '8787878787', 'asdfgh', '1994-05-05', 1),
-                      (3, 'Jane', 'Doe', 'janedoe@email.com', '4343434343', 'asdfgh', '1975-05-05', 1);";
+               VALUES (0, 'Kevin', 'Lueke', 'kevinlueke66@gmail.com', '7171111111', '$2y$10\$jNm2eD/HleGjM9MffUsqZ.mP5UMXW.7yw/aRtFHmJwp9g6mmUiHt2', '2000-09-26', 1), /* qwerty*/
+                      (0, 'Scott', 'Johnson', 'scottyjohnson002@gmail.com', '7170000000', '$2y$10\$jNm2eD/HleGjM9MffUsqZ.mP5UMXW.7yw/aRtFHmJwp9g6mmUiHt2', '2002-03-13', 1), /* qwerty*/
+                      (1, 'Bob', 'Jenkins', 'bjenks@gmail.com', '1234567890', '$2y$10\$QerAfBaV4WUyiY/v2jnFz.CqGO5RkyZKJlOQ.GcFqu2L5RYMMs3Ay', '1999-03-29', 0),  /* pass*/
+                      (5, 'Dale', 'Films', 'dalefilms@old.com', '1010101010', '$2y$10\$SHKDPjLpBoxWnTxF9c59v.zBe2kyUSr.a9C0SxkJuS423BGxSV0q6', '1950-10-11', 0),  /* word*/
+                      (0, 'admin', 'admin', 'admin@email.com', '0000000000', '$2y$10\$8awnBfDxK8NFb.t1eQR/g.a3yAHxu.NtSbx72KrRchwBUcMh0KiZK', '1988-09-07', 1),  /* admin*/
+                      (1, 'supervisor', 'supervisor', 'supervisor@email.com', '1111111111', '$2y$10\$YduvXWB2eTmD.dRwNJlZYuqEmoFCMU/syYKfQr/9wrGnYQmnHy2W.', '1955-11-07', 1), /* supervisor*/
+                      (2, 'doctor', 'doctor', 'doctor@email.com', '2222222222', '$2y$10\$e8XpQe.jeJHrJKiP4tio1OgUy8seJVIKv.TmC50nAq4HfXnHtSArC', '2010-04-16', 1),  /* doctor*/
+                      (3, 'caregiver', 'caregiver', 'caregiver@email.com', '3333333333', '$2y$10\$dYh6woKPsFOsz.bihGanQubAf.e2HKKSg8F40tGw5YNKNcioH0SKy', '1988-09-07', 1),  /* caregiver*/
+                      (4, 'family', 'family', 'family@email.com', '4444444444', '$2y$10\$I1bPD1peqC4eKv4OzhEN2eSGUI8pXZwUgn2.VXz8EaxAKuNSzWz12', '1977-12-25', 1), /* family*/
+                      (5, 'patient', 'patient', 'patient@email.com', '5555555555', '$2y$10\$MIKMxD0aM0DQANXsGCzTYuvDjaPfOLseELXb54KG8Xjso.ddMfkuC', '1899-05-11', 1), /* patient*/
+                      (3, 'John', 'Doe', 'johndoe@email.com', '1414141414', '$2y$10\$S4GJYW/ItWngT2qdHBxDhO65i2oMjcCv.hFXR8wZd7YSS/cC9u6ru', '1999-04-04', 1), /* asdfgh*/
+                      (3, 'Dan', 'Man', 'danman@email.com', '8787878787', '$2y$10\$S4GJYW/ItWngT2qdHBxDhO65i2oMjcCv.hFXR8wZd7YSS/cC9u6ru', '1994-05-05', 1), /* asdfgh*/
+                      (3, 'Jane', 'Doe', 'janedoe@email.com', '4343434343', '$2y$10\$S4GJYW/ItWngT2qdHBxDhO65i2oMjcCv.hFXR8wZd7YSS/cC9u6ru', '1975-05-05', 1);"; /* asdfgh*/
 
 if(mysqli_query($conn, $queryUsers)){
     echo "Records inserted successfully.";
