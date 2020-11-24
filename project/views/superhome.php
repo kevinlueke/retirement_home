@@ -1,5 +1,6 @@
 <?php
-require_once '../includes/viewheader.php'
+require_once '../includes/viewheader.php';
+require_once 'auth/supercheck.php';
 ?>
 <?php
     if (isset($_SESSION['sessionId'])) {
