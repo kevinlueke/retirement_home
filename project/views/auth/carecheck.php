@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['sessionRole'] !== 3) {
+if ($_SESSION['accessLevel'] !== 3) {
   session_start();
   session_destroy();
   header("Location: ../index.php");

@@ -18,7 +18,7 @@ require_once 'register-inc.php';
       <ul>
         <li> <a href="../logout.php">Log Out</a></li>
         <?php
-          //conditionals for future navigation depending on $_SESSION['sessionRole']
+          //conditionals for future navigation depending on $_SESSION['accessLevel']
          ?>
       </ul>
     </nav>
