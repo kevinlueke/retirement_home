@@ -24,12 +24,14 @@ require_once 'register-inc.php';
           echo ' <li> <a href="../admin/adminhome.php">Home</a></li>';
           echo ' <li> <a href="../admin/employees.php">Employees</a></li>';
           echo ' <li> <a href="../admin/approve.php">Approve</a></li>';
-          echo ' <li> <a href="../admin/Roles.php">Roles</a></li>';
+          echo ' <li> <a href="../admin/roles.php">Roles</a></li>';
+          echo ' <li> <a href="../admin/patients.php">Patients</a></li>';
+
 
           }
          ?>
 
-         <li> <a href="../logout.php">Log Out</a></li>
+         <li> <a href="../../logout.php">Log Out</a></li>
       </ul>
     </nav>
   </header>
