@@ -12,65 +12,40 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $contact = $_POST['contact'];
     $relation = $_POST['relation'];
-    $date = $_POST['date'];
+    $code = $_POST['code'];
 
     //check blank
-    if (empty($id) || empty($first) || empty($last)) || empty($email)) {
-        header("Location: ../register.php?empty");
+    if (empty($id) || empty($first) || empty($last) || empty($email)) {
+        header("Location: patientedit.php?" );
         $_SESSION["rWarning"] = "Blank Fields";
         exit();
         //check email
     } elseif (!preg_match("/^[a-zA-Z0-9]*/", $email)) {
-        header("Location: ../register.php");
+        header("Location: patientedit.php");
         $_SESSION["rWarning"] = "Invalid Email";
         exit();
-        //check password if it matches the confirm field
-    } elseif($password !== $confirmPass) {
-        header("Location: ../register.php".$email);
-        $_SESSION["rWarning"] = "Passwords Do Not Match";
-        exit();
     }
-
     else {
-      //check if email was already used
-        $sql = "SELECT email FROM Users WHERE email = ?";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../register.php?error=sqlerror");
-            exit();
-        } else {
-            mysqli_stmt_bind_param($stmt, "s", $email);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
-            $rowCount = mysqli_stmt_num_rows($stmt);
 
-            if ($rowCount > 0) {
-                header("Location: ../register.php?error=usernametaken");
-                $_SESSION["rWarning"] = "Username taken";
-                exit();
-            } else {
+     mysqli_stmt_close($stmt);
 
-             mysqli_stmt_close($stmt);
+     //insert data into database
+     $stmt = mysqli_prepare($conn, "UPDATE Users SET first_name = '$first', last_name = '$last', email = '$email' WHERE id = '$id'");
+     $stmt = mysqli_prepare($conn, "UPDATE Patients SET family_code = '$code', emergency_contact = '$contact', relation_emergency_contact = '$relation' WHERE patient_id = '$id'");
 
-             //insert data into database
-             $stmt = mysqli_prepare($conn, "INSERT INTO Users (role_id, first_name, last_name, email, phone, password, date_of_birth,approved) VALUES (?,?,?,?,?,?,?,?)");
-             $hashedPass =password_hash($password,PASSWORD_DEFAULT);
-             mysqli_stmt_bind_param($stmt,"issssssi",$role_id, $first_name,$last_name,$email,$phone,$hashedPass,$birth,$aprove);
-             mysqli_stmt_execute($stmt);
+     mysqli_stmt_execute($stmt);
 
-             if(mysqli_stmt_error($stmt)){
-              //if error return back to register page and show error message
-              $_SESSION["rWarning"] = "Your information is too long";
-              header("Location:../register.php");
-              exit;
-            }else{
-              header("Location:../login.php");
-            }
 
-        }
+     if(mysqli_stmt_error($stmt)){
+      //if error return back to register page and show error message
+      $_SESSION["rWarning"] = "Your information is too long";
+      header("Location:../register.php");
+      exit;
+    }else{
+      $_SESSION["rWarning"] = "";
+      header("Location:patients.php");
     }
-
     mysqli_close($conn);
-}
+    }
 }
 ?>

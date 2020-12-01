@@ -7,8 +7,8 @@ require_once '../auth/admincheck.php';
 <div class="warning">
   <?php
     if(isset($_SESSION["rWarning"])){
-        $error = $_SESSION["rWarning"];
-        echo "<span> Error:  $error</span>";
+      $error = $_SESSION["warning"];
+      echo "<span>$error</span>";
     }
   ?>
 </div>
@@ -16,11 +16,13 @@ require_once '../auth/admincheck.php';
     echo "Welcome, " . $_SESSION['sessionfName'];
     echo "<br>";
     echo "<h1>Patients</h1>";
-    $id = $_POST['id'];
     $dbServerName = "localhost";
     $dbUsername = "root";
     $dbPassword = "";
     $dbName = "retirement";
+    if (isset($_POST['id'])){
+      $_SESSION['patientId'] = $_POST['id'];
+    }
 
     // Create Connection
     $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
@@ -30,7 +32,7 @@ require_once '../auth/admincheck.php';
     WHERE Patients.id= ?";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_bind_param($stmt, "i", $_SESSION['patientId']);
     mysqli_stmt_execute($stmt);
     if ($result = mysqli_stmt_get_result($stmt)) {
         if (mysqli_num_rows($result) > 0) {
@@ -46,13 +48,13 @@ require_once '../auth/admincheck.php';
             echo "</tr>";
             while ($row = mysqli_fetch_array($result)) {
                 echo "<tr>";
-                //echo " <td><input> value = ".$row['id']."</input> </td>";
+                echo "<td hidden><input name=\"id\" value=\"". $row['id'] ."\"/></br></td>";
                 echo "<td><input name=\"first\" value=\"". $row['first_name'] ."\"/></br></td>";
                 echo "<td><input name=\"last\" value=\"". $row['last_name'] ."\"/></br></td>";
                 echo "<td><input name=\"email\" value=\"". $row['email'] ."\"/></br></td>";
                 echo "<td><input name=\"contact\" value=\"". $row['emergency_contact'] ."\"/></br></td>";
                 echo "<td><input name=\"relation\" value=\"". $row['relation_emergency_contact'] ."\"/></br></td>";
-                echo "<td><input name=\"relation\" value=\"". $row['family_code'] ."\"/></br></td>";
+                echo "<td><input name=\"code\" value=\"". $row['family_code'] ."\"/></br></td>";
                 echo "</tr>";
             }
             echo "</table>";

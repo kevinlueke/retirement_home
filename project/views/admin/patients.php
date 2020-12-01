@@ -36,7 +36,7 @@ require_once '../auth/admincheck.php';
             echo "</tr>";
             while ($row = mysqli_fetch_array($result)) {
                 echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['patient_id'] . "</td>";
                 echo "<td>" . $row['first_name'] . "</td>";
                 echo "<td>" . $row['last_name'] . "</td>";
                 echo "<td>" . $row['email'] . "</td>";
