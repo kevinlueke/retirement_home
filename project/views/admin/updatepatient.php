@@ -4,21 +4,18 @@ session_start();
 
 if (isset($_POST['submit'])) {
     //Add database connection
-    require '../database/db.php';
+    require '../../database/db.php';
 
+    $id = $_POST['id'];
+    $first = $_POST['first'];
+    $last = $_POST['last'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPass = $_POST['confirmPassword'];
-    $role_id = $_POST['role'];
-    $first_name = $_POST['fName'];
-    $last_name = $_POST['lName'];
-    $phone = $_POST['phone'];
-    $rawdate = htmlentities($_POST['birth']);
-    $birth = date('Y-m-d', strtotime($rawdate));
-    $aprove = 0;
+    $contact = $_POST['contact'];
+    $relation = $_POST['relation'];
+    $date = $_POST['date'];
 
     //check blank
-    if (empty($email) || empty($password) || empty($confirmPass)) {
+    if (empty($id) || empty($first) || empty($last)) || empty($email)) {
         header("Location: ../register.php?empty");
         $_SESSION["rWarning"] = "Blank Fields";
         exit();
@@ -68,7 +65,6 @@ if (isset($_POST['submit'])) {
               exit;
             }else{
               header("Location:../login.php");
-              $_SESSION["rWarning"] = "";
             }
 
         }

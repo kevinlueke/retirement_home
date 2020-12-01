@@ -28,9 +28,11 @@ require_once '../auth/admincheck.php';
             echo "<th>Last_Name</th>";
             echo "<th>Email</th>";
             echo "<th>Age</th>";
-            echo "<th> Emergency Contact Name </th>";
+            echo "<th>  Contact Name </th>";
             echo "<th> Relation </th>";
             echo "<th> Admission Date </th>";
+            echo "<th> Family Code </th>";
+            echo "<th>Edit </th>";
             echo "</tr>";
             while ($row = mysqli_fetch_array($result)) {
                 echo "<tr>";
@@ -49,7 +51,14 @@ require_once '../auth/admincheck.php';
                 echo "<td>" . $row['emergency_contact'] . "</td>";
                 echo "<td>" . $row['relation_emergency_contact'] . "</td>";
                 echo "<td>" . $row['admission_date'] . "</td>";
+                echo "<td>" . $row['family_code'] . "</td>";
+                echo "<form action=\"patientedit.php\" method=\"post\">";
+                echo "<td hidden><input name=\"id\" value=\"". $row['id'] ."\" hidden/></br></td>";
+                echo "<td> <button type=\"submit\">EDIT</button> </td>";
+                echo "</form>";
+
                 echo "</tr>";
+
             }
             echo "</table>";
             // Free result set
