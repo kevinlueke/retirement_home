@@ -2,7 +2,9 @@
 
 <?php
 
-require 'database/db.php';
+
+require_once 'database.php';
+require_once '../../database/db.php';
 require_once 'register-inc.php';
 
 ?>

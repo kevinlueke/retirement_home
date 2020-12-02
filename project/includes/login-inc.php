@@ -38,6 +38,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION['sessionId'] = $row['id'];
                     $_SESSION['sessionfName'] = $row['first_name'];
                     $_SESSION['sessionlName'] = $row['last_name'];
+
                     $role = $row['role_id'];
 
                     //run a query that pulls the user role from their role_id
@@ -66,6 +67,7 @@ if (isset($_POST['submit'])) {
                             header("Location: ../views/admin/adminhome.php");
                           }
                       }
+
                     }
 
                     $_SESSION["warning"] = "" ;
