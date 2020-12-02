@@ -1,6 +1,7 @@
 <?php
 
-require_once '../includes/viewheader.php';
+require_once '../../includes/viewheader.php';
+require_once '../auth/supercheck.php';
 
 //WAITING FOR AUTH CODE FROM SCOOT
 //if auth() then run code
