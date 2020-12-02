@@ -55,15 +55,15 @@ if (isset($_POST['submit'])) {
                           $_SESSION['accessLevel'] = $row['rank'];
 
                           if ($_SESSION['accessLevel']==5) {
-                            header("Location: ../views/patienthome.php");
+                            header("Location: ../views/patient/patienthome.php");
                           }elseif ($_SESSION['accessLevel']==3) {
-                            header("Location: ../views/carehome.php");
+                            header("Location: ../views/caregiver/carehome.php");
                           }elseif ($_SESSION['accessLevel']==2) {
-                            header("Location: ../views/doctorhome.php");
+                            header("Location: ../views/doctor/doctorhome.php");
                           }elseif ($_SESSION['accessLevel']==1) {
-                            header("Location: ../views/superhome.php");
+                            header("Location: ../views/supervisor/superhome.php");
                           }elseif ($_SESSION['accessLevel']==0) {
-                            header("Location: ../views/adminhome.php");
+                            header("Location: ../views/admin/adminhome.php");
                           }
                       }
                     }
