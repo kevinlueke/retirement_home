@@ -38,6 +38,9 @@ if (isset($_POST['submit'])) {
                     $_SESSION['sessionfName'] = $row['first_name'];
                     $_SESSION['sessionlName'] = $row['last_name'];
                     $_SESSION['sessionRole'] = $row['role_id'];
+                    // CHANGE THIS. What happens when we add more roles?
+                    // Rather than by role, store by access level in an array.
+                    // We won't be creating new access levels so we can work it from there.
                     if ($_SESSION['sessionRole']==5) {
                       header("Location: ../views/patienthome.php");
                     }elseif ($_SESSION['sessionRole']==3) {

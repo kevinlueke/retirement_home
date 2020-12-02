@@ -1,6 +1,6 @@
 <?php
 
-require_once '../includes/header.php';
+require_once '../includes/viewheader.php';
 
 //WAITING FOR AUTH CODE FROM SCOOT
 //if auth() then run code
@@ -30,8 +30,8 @@ if ($stmt = $conn->prepare('SELECT u.id, u.first_name, u.last_name, r.name
       <tr>
         <td>$first_name $last_name</td>
         <td>$role</td>
-        <td><input type='checkbox' name='deny' value=$user_id></td>
-        <td><input type='checkbox' name='allow' value=$user_id></td>
+        <td><input type='checkbox' name='deny[]' value=$user_id></td>
+        <td><input type='checkbox' name='allow[]' value=$user_id></td>
 
     EOT;  
   }
