@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/viewheader.php';
-require_once 'auth/doctorcheck.php';
+require_once '../../includes/viewheader.php';
+require_once '../auth/doctorcheck.php';
 ?>
 <?php
     if (isset($_SESSION['sessionId'])) {
@@ -10,5 +10,5 @@ require_once 'auth/doctorcheck.php';
     }
 ?>
 <?php
-require_once 'includes/footer.php'
+require_once '../../includes/footer.php'
 ?>

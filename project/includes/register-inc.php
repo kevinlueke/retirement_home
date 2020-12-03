@@ -60,16 +60,25 @@ if (isset($_POST['submit'])) {
              $hashedPass =password_hash($password,PASSWORD_DEFAULT);
              mysqli_stmt_bind_param($stmt,"issssssi",$role_id, $first_name,$last_name,$email,$phone,$hashedPass,$birth,$aprove);
              mysqli_stmt_execute($stmt);
+             if ($role_id == 6) {
+               $stmt = mysqli_prepare($conn, "SELECT * FROM Users WHERE email = ?");
+               mysqli_stmt_bind_param($stmt,"s",$email);
+               mysqli_stmt_execute($stmt);
 
-             if(mysqli_stmt_error($stmt)){
-              //if error return back to register page and show error message
-              $_SESSION["rWarning"] = "Your information is too long";
-              header("Location:../register.php");
-              exit;
-            }else{
+               $result = mysqli_stmt_get_result($stmt);
+
+               if ($row = mysqli_fetch_assoc($result)) {
+
+                 $id = $row['id'];
+
+               }
+               $stmt = mysqli_prepare($conn, "INSERT INTO Patients (patient_id,family_code,emergency_contact,relation_emergency_contact) VALUES (?,' ',' ',' '  )");
+               mysqli_stmt_bind_param($stmt,"s",$id);
+               mysqli_stmt_execute($stmt);
+
+             }
               header("Location:../login.php");
               $_SESSION["rWarning"] = "";
-            }
 
         }
     }
