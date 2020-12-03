@@ -3,10 +3,6 @@
 require_once '../../includes/viewheader.php';
 require_once '../auth/supercheck.php';
 
-//WAITING FOR AUTH CODE FROM SCOOT
-//if auth() then run code
-//else get the user out of this area since they shouldn't be here
-
 echo <<<"EOT"
   <body>
     <form action='checkApproval.php' method='POST'>

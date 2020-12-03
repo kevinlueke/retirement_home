@@ -2,14 +2,8 @@
 require_once '../../includes/viewheader.php';
 require_once '../auth/supercheck.php';
 
-//if auth run this
-
-
-//session_start();
-
-
-if (isset($_POST['approve'])) {
-  foreach ($_POST['approve'] as $user_id) {
+if (isset($_POST['allow'])) {
+  foreach ($_POST['allow'] as $user_id) {
     if ($stmt = $conn->prepare('UPDATE Users SET approved = 1 WHERE id = ?;')) {
       $stmt->bind_param('i', $user_id);
       $stmt->execute();
