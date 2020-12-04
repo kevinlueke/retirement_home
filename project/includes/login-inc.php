@@ -9,8 +9,6 @@ if (isset($_POST['submit'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    echo $email;
-    echo $password;
     if (empty($email) || empty($password)) {
         header("Location: ../login.php?blank=true");
         $_SESSION["warning"] = "Blank Fields";
@@ -38,6 +36,11 @@ if (isset($_POST['submit'])) {
                     $_SESSION['sessionId'] = $row['id'];
                     $_SESSION['sessionfName'] = $row['first_name'];
                     $_SESSION['sessionlName'] = $row['last_name'];
+                    if ($row['approved'] !== 1) {
+                      header("Location: ../login.php");
+                      $_SESSION["warning"] = "Your account has not been approved yet. Check back later.";
+                      exit();
+                    }
 
                     $role = $row['role_id'];
 
@@ -95,6 +98,5 @@ if (isset($_POST['submit'])) {
                 $_SESSION["warning"] = "Access Denied";
                 exit();
             }
-
 
 ?>

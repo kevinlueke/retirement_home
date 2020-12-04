@@ -29,7 +29,25 @@ require_once 'register-inc.php';
           echo ' <li> <a href="../admin/patients.php">Patients</a></li>';
 
 
-          }
+        }elseif ($_SESSION['accessLevel']==1) {
+          echo ' <li> <a href="../supervisor/superhome.php">Home</a></li>';
+          echo ' <li> <a href="../supervisor/employees.php">Employees</a></li>';
+          echo ' <li> <a href="../supervisor/approve.php">Approve</a></li>';
+          echo ' <li> <a href="../supervisor/roles.php">Roles</a></li>';
+          echo ' <li> <a href="../supervisor/patients.php">Patients</a></li>';
+
+        }elseif ($_SESSION['accessLevel']==2) {
+          echo ' <li> <a href="../doctor/superhome.php">Home</a></li>';
+          echo ' <li> <a href="../doctor/patients.php">Patients</a></li>';
+
+        }elseif ($_SESSION['accessLevel']==3) {
+          echo ' <li> <a href="../caregiver/superhome.php">Home</a></li>';
+          echo ' <li> <a href="../caregiver/patients.php">Patients</a></li>';
+
+        }elseif ($_SESSION['accessLevel']==5) {
+          echo ' <li> <a href="../patient/superhome.php">Home</a></li>';
+
+        }
          ?>
 
          <li> <a href="../../logout.php">Log Out</a></li>

@@ -68,7 +68,7 @@ if(mysqli_query($conn, $queryGroup)){
 
 $queryPatients = "INSERT INTO Patients (patient_id, group_id, family_code, emergency_contact, relation_emergency_contact, admission_date)
                   VALUES (3, 0, 'a', 'George Hinds', 'Father', '1999-10-21'),
-                         (9, 1, 'b', 'Milda Gwain', 'Daughter', '2010-01-08');";
+                         (10, 1, 'b', 'Milda Gwain', 'Daughter', '2010-01-08');";
 
 if(mysqli_query($conn, $queryPatients)){
     echo "Records inserted successfully.";
