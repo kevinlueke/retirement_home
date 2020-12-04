@@ -7,8 +7,8 @@ $queryRoles = "INSERT INTO Roles (name, rank)
                       ('Supervisor', 1),
                       ('Doctor', 2),
                       ('Caregiver', 3),
-                      ('Family Member', 4),
-                      ('Patient', 5);";
+                      ('Family Member', 5),
+                      ('Patient', 4);";
 if(mysqli_query($conn, $queryRoles)){
     echo "Records inserted successfully.";
 } else{
