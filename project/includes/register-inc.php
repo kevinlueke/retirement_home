@@ -77,6 +77,24 @@ if (isset($_POST['submit'])) {
                mysqli_stmt_execute($stmt);
 
              }
+
+             elseif ($role_id < 5) {
+               $stmt = mysqli_prepare($conn, "SELECT * FROM Users WHERE email = ?");
+               mysqli_stmt_bind_param($stmt,"s",$email);
+               mysqli_stmt_execute($stmt);
+
+               $result = mysqli_stmt_get_result($stmt);
+
+               if ($row = mysqli_fetch_assoc($result)) {
+
+                 $id = $row['id'];
+
+               }
+               
+               $stmt = mysqli_prepare($conn, "INSERT INTO Employees (employee_id ,salary) VALUES (? ,0  )");
+               mysqli_stmt_bind_param($stmt,"s",$id);
+               mysqli_stmt_execute($stmt);
+             }
               header("Location:../login.php");
               $_SESSION["rWarning"] = "";
 

@@ -33,7 +33,6 @@ require_once 'register-inc.php';
           echo ' <li> <a href="../supervisor/superhome.php">Home</a></li>';
           echo ' <li> <a href="../supervisor/employees.php">Employees</a></li>';
           echo ' <li> <a href="../supervisor/approve.php">Approve</a></li>';
-          echo ' <li> <a href="../supervisor/roles.php">Roles</a></li>';
           echo ' <li> <a href="../supervisor/patients.php">Patients</a></li>';
 
         }elseif ($_SESSION['accessLevel']==2) {

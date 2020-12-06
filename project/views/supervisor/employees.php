@@ -1,6 +1,6 @@
 <?php
 require_once '../../includes/viewheader.php';
-require_once '../auth/admincheck.php';
+require_once '../auth/supercheck.php';
 
 ?>
 
@@ -29,7 +29,6 @@ require_once '../auth/admincheck.php';
             echo "<th>Email</th>";
             echo "<th>Age</th>";
             echo "<th> Salary </th>";
-            echo "<th>Edit </th>";
             echo "</tr>";
             while ($row = mysqli_fetch_array($result)) {
                 echo "<tr>";
@@ -46,9 +45,6 @@ require_once '../auth/admincheck.php';
                   : (date("Y") - $birthDate[0]));
                 echo "<td>" . $age . "</td>";
                 echo "<td>" . $row['salary'] . "</td>";
-                echo "<form action=\"employees_edit.php\" method=\"post\">";
-                echo "<td hidden><input name=\"id\" value=\"". $row['employee_id'] ."\" hidden/></br></td>";
-                echo "<td> <button type=\"submit\">EDIT</button> </td>";
                 echo "</form>";
 
                 echo "</tr>";
