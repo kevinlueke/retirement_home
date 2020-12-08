@@ -9,6 +9,22 @@ require_once '../auth/carecheck.php';
     echo "<br>";
     echo "<h1>Patients</h1>";
 
+    ?>
+    <form method="GET" action="patients.php">
+      <select  name="column">
+        <option value="Users.id">id</option>
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
+        <option value="email">Email</option>
+        <option value="age">Age</option>
+      </select>
+      <input type='input' name='search' placeholder="Search">
+      <button type="submit" > SEARCH </button>
+    </form>
+
+
+    <?php
+
     $dbServerName = "localhost";
     $dbUsername = "root";
     $dbPassword = "";
@@ -16,9 +32,22 @@ require_once '../auth/carecheck.php';
 
     // Create Connection
     $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-    $sql = "SELECT * FROM Users
-    INNER JOIN Patients
-    ON Users.ID=Patients.patient_id";
+
+    if(isset($_GET['search'])){
+      $key=$_GET["search"];  //key=pattern to be searched;
+      $row = $_GET["column"];
+      $sql = "SELECT * FROM Users
+      INNER JOIN Patients
+      ON Users.ID=Patients.patient_id
+      WHERE $row LIKE '%$key%'";
+    }else{
+      $sql = "SELECT * FROM Users
+      INNER JOIN Patients
+      ON Users.ID=Patients.patient_id";
+    }
+
+
+
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
             echo "<table border='1px black solid'>";
@@ -51,7 +80,7 @@ require_once '../auth/carecheck.php';
                 echo "<td>" . $row['relation_emergency_contact'] . "</td>";
                 echo "<td>" . $row['admission_date'] . "</td>";
                 echo "<td>" . $row['family_code'] . "</td>";
-                echo "</form>";
+
 
                 echo "</tr>";
 

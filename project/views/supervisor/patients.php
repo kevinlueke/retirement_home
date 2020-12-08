@@ -9,6 +9,22 @@ require_once '../auth/supercheck.php';
     echo "<br>";
     echo "<h1>Patients</h1>";
 
+    ?>
+    <form method="GET" action="patients.php">
+      <select  name="column">
+        <option value="Users.id">id</option>
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
+        <option value="email">Email</option>
+        <option value="age">Age</option>
+      </select>
+      <input type='input' name='search' placeholder="Search">
+      <button type="submit" > SEARCH </button>
+    </form>
+
+
+    <?php
+
     $dbServerName = "localhost";
     $dbUsername = "root";
     $dbPassword = "";
@@ -16,9 +32,22 @@ require_once '../auth/supercheck.php';
 
     // Create Connection
     $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-    $sql = "SELECT * FROM Users
-    INNER JOIN Patients
-    ON Users.ID=Patients.patient_id";
+
+    if(isset($_GET['search'])){
+      $key=$_GET["search"];  //key=pattern to be searched;
+      $row = $_GET["column"];
+      $sql = "SELECT * FROM Users
+      INNER JOIN Patients
+      ON Users.ID=Patients.patient_id
+      WHERE $row LIKE '%$key%'";
+    }else{
+      $sql = "SELECT * FROM Users
+      INNER JOIN Patients
+      ON Users.ID=Patients.patient_id";
+    }
+
+
+
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
             echo "<table border='1px black solid'>";
@@ -32,7 +61,6 @@ require_once '../auth/supercheck.php';
             echo "<th> Relation </th>";
             echo "<th> Admission Date </th>";
             echo "<th> Family Code </th>";
-            echo "<th>Edit </th>";
             echo "</tr>";
             while ($row = mysqli_fetch_array($result)) {
                 echo "<tr>";
@@ -52,10 +80,7 @@ require_once '../auth/supercheck.php';
                 echo "<td>" . $row['relation_emergency_contact'] . "</td>";
                 echo "<td>" . $row['admission_date'] . "</td>";
                 echo "<td>" . $row['family_code'] . "</td>";
-                echo "<form action=\"patientedit.php\" method=\"post\">";
-                echo "<td hidden><input name=\"id\" value=\"". $row['id'] ."\" hidden/></br></td>";
-                echo "<td> <button type=\"submit\">EDIT</button> </td>";
-                echo "</form>";
+
 
                 echo "</tr>";
 
