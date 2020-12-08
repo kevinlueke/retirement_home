@@ -27,7 +27,8 @@ require_once 'register-inc.php';
           echo ' <li> <a href="../admin/approve.php">Approve</a></li>';
           echo ' <li> <a href="../admin/roles.php">Roles</a></li>';
           echo ' <li> <a href="../admin/patients.php">Patients</a></li>';
-          echo ' <li> <a href="../admin/roster.php">Roster</a></li>';
+          echo ' <li> <a href="../admin/roster.php">New Roster</a></li>';
+          echo ' <li> <a href="../admin/viewroster.php">View Roster</a></li>';
 
 
         }elseif ($_SESSION['accessLevel']==1) {
@@ -35,6 +36,8 @@ require_once 'register-inc.php';
           echo ' <li> <a href="../supervisor/employees.php">Employees</a></li>';
           echo ' <li> <a href="../supervisor/approve.php">Approve</a></li>';
           echo ' <li> <a href="../supervisor/patients.php">Patients</a></li>';
+          echo ' <li> <a href="../supervisor/roster.php">New Roster</a></li>';
+          echo ' <li> <a href="../supervisor/viewroster.php">View Roster</a></li>';
 
         }elseif ($_SESSION['accessLevel']==2) {
           echo ' <li> <a href="../doctor/superhome.php">Home</a></li>';
