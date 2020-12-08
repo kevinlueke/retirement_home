@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
 
             if ($rowCount > 0) {
                 header("Location: ../register.php?error=usernametaken");
-                $_SESSION["rWarning"] = "Username taken";
+                $_SESSION["rWarning"] = "Email taken";
                 exit();
             } else {
 
@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
                  $id = $row['id'];
 
                }
-               
+
                $stmt = mysqli_prepare($conn, "INSERT INTO Employees (employee_id ,salary) VALUES (? ,0  )");
                mysqli_stmt_bind_param($stmt,"s",$id);
                mysqli_stmt_execute($stmt);

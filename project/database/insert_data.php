@@ -85,8 +85,8 @@ if(mysqli_query($conn, $queryAppointments)){
     echo "ERROR: Could not able to execute $queryAppointments. " . mysqli_error($conn);
 }
 
-$queryRoster = "INSERT INTO Roster (roster_date, supervisor_id, doctor_id, caregiver_1, caregiver_2, caregiver_3, caregiver_4, group_id)
-                VALUES ('2020-11-16', 5, 6, 7, 10, 11, 12, 0);";
+$queryRoster = "INSERT INTO Roster (roster_date, supervisor_id, doctor_id, caregiver_1, caregiver_2, caregiver_3, caregiver_4)
+                VALUES ('2020-11-16', 5, 6, 7, 10, 11, 12);";
 
 if(mysqli_query($conn, $queryRoster)){
     echo "Records inserted successfully.";

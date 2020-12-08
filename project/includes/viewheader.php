@@ -27,6 +27,7 @@ require_once 'register-inc.php';
           echo ' <li> <a href="../admin/approve.php">Approve</a></li>';
           echo ' <li> <a href="../admin/roles.php">Roles</a></li>';
           echo ' <li> <a href="../admin/patients.php">Patients</a></li>';
+          echo ' <li> <a href="../admin/roster.php">Roster</a></li>';
 
 
         }elseif ($_SESSION['accessLevel']==1) {

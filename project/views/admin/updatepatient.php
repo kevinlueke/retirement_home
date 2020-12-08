@@ -31,8 +31,8 @@ if (isset($_POST['submit'])) {
 
      //insert data into database
      $stmt = mysqli_prepare($conn, "UPDATE Users SET first_name = '$first', last_name = '$last', email = '$email' WHERE id = '$id'");
+     mysqli_stmt_execute($stmt);
      $stmt = mysqli_prepare($conn, "UPDATE Patients SET family_code = '$code', emergency_contact = '$contact', relation_emergency_contact = '$relation' WHERE patient_id = '$id'");
-
      mysqli_stmt_execute($stmt);
 
 
