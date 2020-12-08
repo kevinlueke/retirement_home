@@ -7,7 +7,21 @@ require_once '../auth/supercheck.php';
 <?php
     echo "Welcome, " . $_SESSION['sessionfName'];
     echo "<br>";
-    echo "<h1>Patients</h1>";
+    echo "<h1>Employees</h1>";
+    ?>
+<form method="GET" action="employees.php">
+  <select  name="column">
+    <option value="Users.id">id</option>
+    <option value="first_name">First Name</option>
+    <option value="last_name">Last Name</option>
+    <option value="email">Email</option>
+    <option value="age">Age</option>
+    <option value="salary">Salary</option>
+  </select>
+  <input type='input' name='search' placeholder="Search">
+  <button type="submit" > SEARCH </button>
+</form>
+    <?php
 
     $dbServerName = "localhost";
     $dbUsername = "root";
@@ -15,10 +29,22 @@ require_once '../auth/supercheck.php';
     $dbName = "retirement";
 
     // Create Connection
+
     $conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
-    $sql = "SELECT * FROM Users
-    LEFT JOIN Employees ON employee_id = Users.ID
-    WHERE role_id BETWEEN 1 AND 4;";
+
+    if(isset($_GET['search'])){
+      $key=$_GET["search"];  //key=pattern to be searched;
+      $row = $_GET["column"];
+      $sql = "SELECT * FROM Users
+      LEFT JOIN Employees ON employee_id = Users.ID
+      WHERE $row LIKE '%$key%' and Users.role_id BETWEEN 1 AND 4;";
+    }else{
+      $sql = "SELECT * FROM Users
+      LEFT JOIN Employees ON employee_id = Users.ID
+      WHERE role_id BETWEEN 1 AND 4;";
+    }
+
+
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
             echo "<table border='1px black solid'>";
@@ -45,7 +71,7 @@ require_once '../auth/supercheck.php';
                   : (date("Y") - $birthDate[0]));
                 echo "<td>" . $age . "</td>";
                 echo "<td>" . $row['salary'] . "</td>";
-                echo "</form>";
+
 
                 echo "</tr>";
 
@@ -57,7 +83,7 @@ require_once '../auth/supercheck.php';
             echo "No records matching your query were found.";
         }
     } else {
-        echo "warning: Could not able to execute $sql. ";
+        echo "No records matching your query were found.";
     }
 ?>
 <?php
