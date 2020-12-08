@@ -1,6 +1,6 @@
 <?php
 require_once '../../includes/viewheader.php';
-require_once '../auth/admincheck.php';
+require_once '../auth/patientcheck.php';
 
 ?>
 

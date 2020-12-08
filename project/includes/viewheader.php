@@ -42,13 +42,16 @@ require_once 'register-inc.php';
         }elseif ($_SESSION['accessLevel']==2) {
           echo ' <li> <a href="../doctor/superhome.php">Home</a></li>';
           echo ' <li> <a href="../doctor/patients.php">Patients</a></li>';
+          echo ' <li> <a href="../doctor/viewroster.php">View Roster</a></li>';
 
         }elseif ($_SESSION['accessLevel']==3) {
           echo ' <li> <a href="../caregiver/superhome.php">Home</a></li>';
           echo ' <li> <a href="../caregiver/patients.php">Patients</a></li>';
+          echo ' <li> <a href="../caregiver/viewroster.php">View Roster</a></li>';
 
         }elseif ($_SESSION['accessLevel']==5) {
-          echo ' <li> <a href="../patient/superhome.php">Home</a></li>';
+          echo ' <li> <a href="../patient/patienthome.php">Home</a></li>';
+          echo ' <li> <a href="../patient/viewroster.php">View Roster</a></li>';
 
         }
          ?>
