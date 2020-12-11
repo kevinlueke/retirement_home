@@ -19,6 +19,7 @@ require_once 'register-inc.php';
     <nav>
       <ul>
         <li> <a href="index.php">Home</a> </li>
+        <li> <a href="family_login.php">Relative Log In</a></li>
         <li> <a href="login.php">Log In</a></li>
         <li> <a href="register.php">Register</a></li>
         <li> <a href="logout.php">Log Out</a></li>

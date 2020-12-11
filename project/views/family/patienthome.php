@@ -1,12 +1,34 @@
 <?php
-require_once '../../includes/viewheader.php';
-require_once '../auth/patientcheck.php';
+session_start();
+
+require_once '../auth/familycheck.php';
 ?>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Shady Acres</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+  </head>
+  <body>
+  <header>
+<nav>
+  <ul>
+    <?php
+        echo ' <li> <a href="../family/patienthome.php">Home</a></li>';
+        echo ' <li> <a href="../family/viewroster.php">View Roster</a></li>';
+
+     ?>
+     <li> <a href="../../logout.php">Log Out</a></li>
+  </ul>
+</nav>
+
+
+
 <?php
     if (isset($_SESSION['sessionId'])) {
         echo "Welcome, Mr./Mrs. " . $_SESSION['sessionlName'];
         echo "<br>";
-        echo "<h1>Your Schedule</h1>";
+        echo "<h1>Your Relative's Schedule</h1>";
     }
 
     echo "<table border='1px black solid'>";

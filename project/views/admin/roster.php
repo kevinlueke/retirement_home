@@ -14,7 +14,7 @@ require_once '../auth/admincheck.php';
     echo "Welcome, " . $_SESSION['sessionfName'];
     echo "<br>";
     if (isset($_SESSION["confirm"])) {
-      echo "Role added!";
+      echo "Roster added!";
       unset($_SESSION["confirm"]);
     }
     echo "<h1>Roster</h1>";

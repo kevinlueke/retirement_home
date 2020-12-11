@@ -6,6 +6,7 @@ require_once 'database.php';
 require_once '../../database/db.php';
 require_once 'register-inc.php';
 
+
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -49,9 +50,13 @@ require_once 'register-inc.php';
           echo ' <li> <a href="../caregiver/patients.php">Patients</a></li>';
           echo ' <li> <a href="../caregiver/viewroster.php">View Roster</a></li>';
 
-        }elseif ($_SESSION['accessLevel']==5) {
+        }elseif ($_SESSION['accessLevel']==4) {
           echo ' <li> <a href="../patient/patienthome.php">Home</a></li>';
           echo ' <li> <a href="../patient/viewroster.php">View Roster</a></li>';
+
+        }elseif ($_SESSION['accessLevel']==5) {
+          echo ' <li> <a href="../family/patienthome.php">Home</a></li>';
+          echo ' <li> <a href="../family/viewroster.php">View Roster</a></li>';
 
         }
          ?>

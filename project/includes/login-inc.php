@@ -57,8 +57,8 @@ if (isset($_POST['submit'])) {
                         $result = mysqli_stmt_get_result($stmt);
                         if ($row = mysqli_fetch_assoc($result)) {
                           $_SESSION['accessLevel'] = $row['rank'];
-
-                          if ($_SESSION['accessLevel']==5) {
+                          echo $row['rank'];
+                          if ($_SESSION['accessLevel']==4) {
                             header("Location: ../views/patient/patienthome.php");
                           }elseif ($_SESSION['accessLevel']==3) {
                             header("Location: ../views/caregiver/carehome.php");
@@ -74,6 +74,7 @@ if (isset($_POST['submit'])) {
                     }
 
                     $_SESSION["warning"] = "" ;
+                    echo "here";
                     exit();
 
 
